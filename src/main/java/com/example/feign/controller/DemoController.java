@@ -23,4 +23,9 @@ public class DemoController {
   public ResponseEntity<BaseResponseInfo> postController() {
     return demoService.post(BaseRequestInfo.builder().name("testName").age(10L).build());
   }
+
+  @GetMapping("/error")
+  public ResponseEntity<BaseResponseInfo> errorDecoderController() {
+    return demoService.error();
+  }
 }

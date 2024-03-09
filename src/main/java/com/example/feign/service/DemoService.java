@@ -19,4 +19,8 @@ public class DemoService {
   public ResponseEntity<BaseResponseInfo> post(BaseRequestInfo request) {
     return demoFeignClient.callPost("CustomHeader", request);
   }
+
+  public ResponseEntity<BaseResponseInfo> error() {
+    return demoFeignClient.callError();
+  }
 }

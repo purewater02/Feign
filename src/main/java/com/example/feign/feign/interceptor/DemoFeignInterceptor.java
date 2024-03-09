@@ -21,12 +21,14 @@ public class DemoFeignInterceptor implements RequestInterceptor {
     }
 
     // post 요청일 경우
-    String encodedBody =
-        StringUtils.toEncodedString(requestTemplate.body(), StandardCharsets.UTF_8);
-    log.info("[POST] [DemoFeignInterceptor] requestBody : " + encodedBody);
+    if (requestTemplate.method().equals(HttpMethod.POST.name())) {
+      String encodedBody =
+          StringUtils.toEncodedString(requestTemplate.body(), StandardCharsets.UTF_8);
+      log.info("[POST] [DemoFeignInterceptor] requestBody : " + encodedBody);
 
-    // 받은 바디 변경 등 추가 로직을 정의할 수 있다.
-    String convertedRequestBody = encodedBody;
-    requestTemplate.body(convertedRequestBody);
+      // 받은 바디 변경 등 추가 로직을 정의할 수 있다.
+      String convertedRequestBody = encodedBody;
+      requestTemplate.body(convertedRequestBody);
+    }
   }
 }
